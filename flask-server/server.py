@@ -1,8 +1,14 @@
 from flask import Flask
 import pandas as pd
+import cachetools
 
 
 app = Flask(__name__)
+
+# Cache the data
+cache = cachetools.LRUCache(maxsize=1)  # Adjust cache size as needed
+data = pd.read_excel("data/BattedBallData.xlsx")
+cache['excel_data'] = data
 
 @app.route("/matchup")
 def matchup():
@@ -10,17 +16,13 @@ def matchup():
 
 @app.route("/pitchers")
 def pitchers():
-    df = pd.read_excel("data/BattedBallData.xlsx")
-    df = df["PITCHER"]
-    df = df.drop(columns=['Name']).reset_index(drop=True)
+    df = cache.get('excel_data')["PITCHER"]
     json_data_split = df.to_json(orient='split')
     return json_data_split
 
 @app.route("/batters")
 def batters():
-    df = pd.read_excel("data/BattedBallData.xlsx")
-    df = df["BATTER"]
-    df = df.drop(columns=['Name']).reset_index(drop=True)
+    df = cache.get('excel_data')["BATTER"]
     json_data_split = df.to_json(orient='split')
     return json_data_split
 
