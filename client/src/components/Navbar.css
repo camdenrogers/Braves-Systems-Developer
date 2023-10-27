@@ -1,0 +1,36 @@
+/* Navbar Styles */
+.navbar {
+    background-color: #333; /* Dark gray background color */
+    padding: 10px; /* Add padding for spacing */
+  }
+  
+  /* Navigation Links */
+  .nav-links {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start; /* Left-align the links */
+  }
+  
+  /* Individual Navigation Link */
+  .nav-link {
+    margin-right: 20px; /* Add margin for spacing between links */
+    color: #fff; /* White text color */
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #logo {
+    margin-right: 20px; /* Add margin for spacing between links */
+    color: #fff; /* White text color */
+    text-decoration: none;
+    padding-right: 25px;
+    font-weight:bolder;
+    border-right: 2px solid #dbdbdb;
+  }
+  
+  /* Style on hover (optional) */
+  .nav-link:hover {
+    text-decoration: underline;
+  }
+  

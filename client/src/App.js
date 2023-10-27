@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Dropdown from './components/Dropdown'; // Import the Dropdown component
+import Dropdown from './components/Dropdown';
+import Navbar from './components/Navbar';
+import Header from './components/Header';
+import './App.css';
 
 
 function App() {
@@ -33,8 +36,12 @@ function App() {
 
   return (
     <div>
-      <Dropdown players={pitchersArray} />
-      <Dropdown players={battersArray} />
+      <Navbar />
+      <Header />
+      <div className="dropdown-container">
+        <Dropdown players={pitchersArray} label="Pitcher"/>
+        <Dropdown players={battersArray} label="Batter"/>
+      </div>
     </div>
   )
 }
