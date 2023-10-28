@@ -84,12 +84,11 @@ function App() {
         <Dropdown players={battersArray} selectedOption={selectedBatter} onSelectOption={handleSelectBatter} label="Batter"/>
       </div>
       <div className='left-stats'>
-        <StatBox statName="Batting Average" statValue={battingAverageArray}/>
-        <StatBox />
-        <StatBox />
-        <StatBox />
-        <StatBox />
-        <StatBox />
+        <StatBox battingStatName="AVG" expectedStatName="xBA" battingStat={battingAverageArray} expectedStat={battingAverageArray}/>
+        <StatBox battingStatName="OBP" expectedStatName="xwOBA" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+        <StatBox battingStatName="SLG" expectedStatName="xSLG" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+        <StatBox battingStatName="K%" expectedStatName="BB%" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+        <StatBox battingStatName="HR" expectedStatName="HR%" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
       </div>
     </div>
   )

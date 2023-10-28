@@ -1,31 +1,59 @@
+/* CSS for StatBox components */
 .stat-box {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px;
-    text-align: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #fff; /* Background color for the box */
+    border: 1px solid #e0e0e0; /* Border styles */
+    border-radius: 8px; /* Rounded corners */
+    padding: 0px; /* Padding inside the box */
+    margin: 8px; /* Margin between boxes */
+    display: flex; /* Use Flexbox to arrange content */
+    justify-content: space-between; /* Space between halves */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for a modern look */
+    transition: transform 0.2s ease-in-out; /* Add a subtle transition effect */
     width: calc(45% - 16px); /* One-third of the screen width */
-    height: 5vh
+    position: relative; /* Relative positioning for the separator line */
+    height: 12vh;
+  
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      flex-direction: column; /* Stack halves vertically on smaller screens */
+      text-align: center; /* Center align text on smaller screens */
+    }
   }
   
-  .clearfix::after {
-    content: "";
-    clear: both;
-    display: table;
+  /* Left and right halves of the StatBox */
+  .stat-half {
+    width: 50%; /* Each half takes up 50% of the container */
+    padding: 8px; /* Padding inside each half */
   }
-
+  
+  /* Stat Name */
   .stat-name {
-    font-size: 18px;
-    margin-bottom: 0px;
-    margin-top: 0px;
+    font-size: 16px; /* Font size for the stat name */
+    color: #333; /* Text color for the stat name */
+    margin: 0px; /* Spacing between stat name and value */
+    margin-bottom: 4px;
+    text-align: center;
   }
   
+  /* Stat Value */
   .stat-value {
-    font-size: 24px;
-    font-weight: bold;
-    color: #0077b6;
-    margin-top: 2px;
+    font-size: 28px; /* Font size for the stat value */
+    font-weight: bold; /* Bold font for emphasis */
+    color: #0077b6; /* Text color for the stat value */
+    text-align: center;
+  }
+  
+  /* Different colors for the halves */
+  .left-half {
+    background-color: #f9f9f9; /* Background color for the left half */
+  }
+  
+  .right-half {
+    background-color: #ffffff; /* Background color for the right half */
+  }
+  
+  /* Hover effect for a subtle scale transformation */
+  .stat-box:hover {
+    transform: scale(1.03); /* Slightly scale up on hover */
   }
   
