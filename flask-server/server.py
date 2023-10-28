@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 import pandas as pd
 import cachetools
 
@@ -17,14 +17,26 @@ def matchup():
 @app.route("/pitchers")
 def pitchers():
     df = cache.get('excel_data')["PITCHER"]
+    df = df.drop_duplicates()
     json_data_split = df.to_json(orient='split')
     return json_data_split
 
 @app.route("/batters")
 def batters():
     df = cache.get('excel_data')["BATTER"]
+    df = df.drop_duplicates()
     json_data_split = df.to_json(orient='split')
     return json_data_split
+
+@app.route("/data")
+def batting_average():
+    pitcher = request.args.get('pitcher')
+    batter = request.args.get('batter')
+    print(pitcher)
+    if pitcher == "All Pitchers":
+        return {"avg" : [".300"]}
+    else:
+        return {"avg" : [".250"]}
 
 if __name__ == "__main__":
     app.run(debug=True)

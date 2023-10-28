@@ -1,13 +1,19 @@
-import React from 'react'
+import React from 'react';
 import './Dropdown.css';
 
-const Dropdown = ({ players, label }) => {
+
+const Dropdown = ({ players, selectedOption, onSelectOption, label }) => {
+
+    const handleDropdownChange = (event) => {
+        onSelectOption(event.target.value)
+    };
+
     return(
-        <div class="custom-dropdown">
-            <label for="dropdown">Select a {label}</label>
-            <div class="select-container"></div>
-            <select id="dropdown">
-                <option value="all">All {label}s</option>
+        <div className="custom-dropdown">
+            <label htmlFor="dropdown">Select a {label}</label>
+            <div className="select-container"></div>
+            <select id="dropdown" value={selectedOption} onChange={handleDropdownChange}>
+                <option value={`All ${label}s`}>All {label}s</option>
                 {players.map((player) => (
                     <option key={player} value={player}>{player}</option>
                 ))}
@@ -15,5 +21,6 @@ const Dropdown = ({ players, label }) => {
         </div>
     );
 }
+
 
 export default Dropdown;
