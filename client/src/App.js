@@ -3,6 +3,7 @@ import Dropdown from './components/Dropdown';
 import Navbar from './components/Navbar';
 import Header from './components/Header';
 import StatBox from './components/StatBox';
+import StatGraphBox from './components/StatGraphBox';
 import './App.css';
 
 
@@ -73,7 +74,7 @@ function App() {
   const pitchersArray = pitchers.data || [];
   const battersArray = batters.data || [];
   const battingAverageArray = battingAverage.avg || [];
-
+  const exitVelocities = [90, 92, 88, 95, 91, 93]; // Sample exit velocity data
 
   return (
     <div>
@@ -83,12 +84,21 @@ function App() {
         <Dropdown players={pitchersArray} selectedOption={selectedPitcher} onSelectOption={handleSelectPitcher} label="Pitcher"/>
         <Dropdown players={battersArray} selectedOption={selectedBatter} onSelectOption={handleSelectBatter} label="Batter"/>
       </div>
-      <div className='left-stats'>
-        <StatBox battingStatName="AVG" expectedStatName="xBA" battingStat={battingAverageArray} expectedStat={battingAverageArray}/>
-        <StatBox battingStatName="OBP" expectedStatName="xwOBA" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
-        <StatBox battingStatName="SLG" expectedStatName="xSLG" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
-        <StatBox battingStatName="K%" expectedStatName="BB%" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
-        <StatBox battingStatName="HR" expectedStatName="HR%" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+      <div className="container">
+        <div className='left-stats'>
+          <StatBox battingStatName="AVG" expectedStatName="xBA" battingStat={battingAverageArray} expectedStat={battingAverageArray}/>
+          <StatBox battingStatName="OBP" expectedStatName="xwOBA" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+          <StatBox battingStatName="SLG" expectedStatName="xSLG" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+          <StatBox battingStatName="K%" expectedStatName="BB%" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+          <StatBox battingStatName="HR" expectedStatName="HR%" battingStat={battingAverageArray} expectedStat={battingAverageArray} />
+        </div>
+        <div className='right-stats'>
+          <StatGraphBox statName="Exit Velocity" statData={exitVelocities} />
+          <StatGraphBox statName="Exit Velocity" statData={exitVelocities} />
+          <StatGraphBox statName="Exit Velocity" statData={exitVelocities} />
+          <StatGraphBox statName="Exit Velocity" statData={exitVelocities} />
+          <StatGraphBox statName="Exit Velocity" statData={exitVelocities} />
+        </div>
       </div>
     </div>
   )

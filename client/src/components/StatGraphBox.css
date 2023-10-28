@@ -1,0 +1,53 @@
+/* CSS for StatGraphBox component */
+.stat-graph-box {
+    align-items: top;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* Use Flexbox to arrange content */
+    justify-content: middle;
+    /* width: calc(35% - 16px); */
+    /* overflow: hidden; Hide overflowing content */
+    height: 15vh;
+    align-items: center;
+  }
+  
+  .chart-container {
+    width: 90%;
+    padding-right: 0; /* Add some spacing between chart and statistic */
+  }
+  
+  .average-stat-data {
+    width: 50%; /* Right half for the average statistic */
+    text-align: center;
+  }
+  
+  .average-stat-data h2 {
+    font-size: 18px; /* Font size for the statistic heading */
+    margin-bottom: 8px; /* Spacing between heading and value */
+  }
+  
+  .average-stat-data p {
+    font-size: 24px; /* Font size for the statistic value */
+    font-weight: bold; /* Bold font for emphasis */
+    color: #0077b6; /* Text color for the statistic value */
+  }
+  
+  /* Responsive design for smaller screens */
+  @media (max-width: 768px) {
+    .stat-graph-box {
+      flex-direction: column; /* Stack halves vertically on smaller screens */
+    }
+  
+    .chart-container {
+      width: 100%; /* Full width for the chart on smaller screens */
+      padding-right: 0; /* Remove padding on smaller screens */
+    }
+  
+    .average-stat-data {
+      width: 100%; /* Full width for the statistic on smaller screens */
+      text-align: center; /* Center align text on smaller screens */
+    }
+  }
+  

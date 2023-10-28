@@ -48,3 +48,25 @@ body {
   border-bottom: 2px solid #dbdbdb; /* Dark gray border color */
 
 }
+
+/* CSS for positioning divs using Flexbox */
+.container {
+  display: flex;
+  justify-content: space-between; /* Separate divs to left and right */
+  align-items: top; /* Vertically center divs */
+  min-height: 100vh; /* Make the container take up the full viewport height */
+}
+
+/* Style for the left div */
+.left-stats {
+  flex: 1; /* Allow the left div to grow and fill available space */
+  padding: 16px; /* Add padding as needed */
+  align-items: top;
+}
+
+/* Style for the right div */
+.right-stats {
+  flex: 1; /* Allow the right div to grow and fill available space */
+  padding: 16px; /* Add padding as needed */
+  align-items: top;
+}
