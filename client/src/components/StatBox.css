@@ -11,7 +11,7 @@
     transition: transform 0.2s ease-in-out; /* Add a subtle transition effect */
     /* width: calc(45% - 16px); One-third of the screen width */
     position: relative; /* Relative positioning for the separator line */
-    height: 18vh;
+    height: 27.8vh;
     margin-right: 0;
     margin-bottom: 10px;
     align-items: center;

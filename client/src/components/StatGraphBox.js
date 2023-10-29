@@ -1,9 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { LineChart } from '@mui/x-charts/LineChart';
 import './StatGraphBox.css';
 
-const StatGraphBox = ({ statName, statData }) => {
+const StatGraphBox = ({ statName, statData, unit }) => {
   return (
     <div className="stat-graph-box">
       <div className="chart-container">
@@ -18,7 +17,7 @@ const StatGraphBox = ({ statName, statData }) => {
       </div>
       <div className="average-stat-data">
         <h2>Average {statName}</h2>
-        <p>{calculateAverage(statData)} mph</p>
+        <p>{calculateAverage(statData)} {unit}</p>
       </div>
     </div>
   );
