@@ -42,7 +42,6 @@ full_data['HANG_TIME'] = imputer.fit_transform(full_data[['HANG_TIME']])
 predicted_outcomes_rf = rf_model.predict(full_data[predictors])
 predicted_outcomes_rf = pd.DataFrame(predicted_outcomes_rf)
 full_data["predicted_outcomes_rf"] = predicted_outcomes_rf
-print("Full data:", full_data)
 
 full_data.to_excel("full_data_with_predictions.xlsx")
 
@@ -59,6 +58,7 @@ def matchup():
 def pitchers():
     df = cache.get('excel_data')["PITCHER"]
     df = df.drop_duplicates()
+    df = df.sort_values()
     json_data_split = df.to_json(orient='split')
     return json_data_split
 
@@ -66,6 +66,7 @@ def pitchers():
 def batters():
     df = cache.get('excel_data')["BATTER"]
     df = df.drop_duplicates()
+    df = df.sort_values()
     json_data_split = df.to_json(orient='split')
     return json_data_split
 
