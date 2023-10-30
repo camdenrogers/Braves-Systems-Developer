@@ -11,7 +11,6 @@ app = Flask(__name__)
 
 #Train rf model for expected statistics
 full_data = pd.read_excel("data/BattedBallData.xlsx")
-# full_data = full_data.dropna()
 
 predictors = [
     "LAUNCH_ANGLE",
@@ -42,8 +41,6 @@ full_data['HANG_TIME'] = imputer.fit_transform(full_data[['HANG_TIME']])
 predicted_outcomes_rf = rf_model.predict(full_data[predictors])
 predicted_outcomes_rf = pd.DataFrame(predicted_outcomes_rf)
 full_data["predicted_outcomes_rf"] = predicted_outcomes_rf
-
-full_data.to_excel("full_data_with_predictions.xlsx")
 
 # Cache the data
 cache = cachetools.LRUCache(maxsize=1)  # Adjust cache size as needed
