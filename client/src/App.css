@@ -1,76 +1,78 @@
-.App {
-  text-align: center;
-}
+@media (min-width: 768px) {
+  .App {
+    text-align: center;
+  }
 
-body {
-  margin: 0 
-}
+  body {
+    margin: 0 
+  }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
   }
-  to {
-    transform: rotate(360deg);
+
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
   }
-}
 
-.dropdown-container {
-  display: flex;
-  justify-content: center;
-  height: 12vh; /* Adjust as needed for vertical centering */
-  border-bottom: 2px solid #dbdbdb; /* Dark gray border color */
+  .App-link {
+    color: #61dafb;
+  }
 
-}
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 
-/* CSS for positioning divs using Flexbox */
-.container {
-  display: flex;
-  justify-content: space-between; /* Separate divs to left and right */
-  align-items: top; /* Vertically center divs */
-  min-height: 100vh; /* Make the container take up the full viewport height */
-}
+  .dropdown-container {
+    display: flex;
+    justify-content: center;
+    height: 12vh; /* Adjust as needed for vertical centering */
+    border-bottom: 2px solid #dbdbdb; /* Dark gray border color */
 
-/* Style for the left div */
-.left-stats {
-  flex: 1; /* Allow the left div to grow and fill available space */
-  padding: 16px; /* Add padding as needed */
-  align-items: top;
-}
+  }
 
-/* Style for the right div */
-.right-stats {
-  flex: 1; /* Allow the right div to grow and fill available space */
-  padding: 16px; /* Add padding as needed */
-  align-items: top;
-}
+  /* CSS for positioning divs using Flexbox */
+  .container {
+    display: flex;
+    justify-content: space-between; /* Separate divs to left and right */
+    align-items: top; /* Vertically center divs */
+    min-height: 100vh; /* Make the container take up the full viewport height */
+  }
 
-.no-data {
-  text-align: center;
+  /* Style for the left div */
+  .left-stats {
+    flex: 1; /* Allow the left div to grow and fill available space */
+    padding: 16px; /* Add padding as needed */
+    align-items: top;
+  }
+
+  /* Style for the right div */
+  .right-stats {
+    flex: 1; /* Allow the right div to grow and fill available space */
+    padding: 16px; /* Add padding as needed */
+    align-items: top;
+  }
+
+  .no-data {
+    text-align: center;
+  }
 }

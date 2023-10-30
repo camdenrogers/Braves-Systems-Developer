@@ -1,13 +1,54 @@
 from flask import Flask, request
 import pandas as pd
 import cachetools
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.impute import SimpleImputer
+
+
 
 
 app = Flask(__name__)
 
+#Train rf model for expected statistics
+full_data = pd.read_excel("data/BattedBallData.xlsx")
+# full_data = full_data.dropna()
+
+predictors = [
+    "LAUNCH_ANGLE",
+    "EXIT_SPEED",
+    "EXIT_DIRECTION",
+    "HIT_DISTANCE",
+    "HANG_TIME",
+    "HIT_SPIN_RATE"
+]
+
+training_data = full_data.copy().dropna()
+training_data = training_data[training_data['PLAY_OUTCOME'] != 'Undefined']
+training_data = training_data[training_data['PLAY_OUTCOME'] != 'FieldersChoice']
+training_data = training_data[training_data['PLAY_OUTCOME'] != 'Sacrifice']
+training_data = training_data[training_data['PLAY_OUTCOME'] != 'Error']
+
+#Random Forest Classifier
+outcomes = training_data["PLAY_OUTCOME"]
+features = training_data[predictors]
+rf_model = RandomForestClassifier(n_estimators=100, random_state=42)
+
+rf_model.fit(features, outcomes)
+
+imputer = SimpleImputer(strategy='mean')
+full_data['HIT_SPIN_RATE'] = imputer.fit_transform(full_data[['HIT_SPIN_RATE']])
+full_data['HANG_TIME'] = imputer.fit_transform(full_data[['HANG_TIME']])
+
+predicted_outcomes_rf = rf_model.predict(full_data[predictors])
+predicted_outcomes_rf = pd.DataFrame(predicted_outcomes_rf)
+full_data["predicted_outcomes_rf"] = predicted_outcomes_rf
+print("Full data:", full_data)
+
+full_data.to_excel("full_data_with_predictions.xlsx")
+
 # Cache the data
 cache = cachetools.LRUCache(maxsize=1)  # Adjust cache size as needed
-data = pd.read_excel("data/BattedBallData.xlsx")
+data = full_data
 cache['excel_data'] = data
 
 @app.route("/matchup")
@@ -36,6 +77,14 @@ def get_average(df):
     avg = num_hits/num_at_bats
     return avg
 
+def get_xba(df):
+    hits = ['Single', 'Double', 'Triple', 'HomeRun']
+    num_at_bats = len(df)
+    df = df[df['predicted_outcomes_rf'].isin(hits)]
+    num_hits = len(df)
+    avg = num_hits/num_at_bats
+    return avg
+
 def get_slg(df):
     hits = ['Single', 'Double', 'Triple', 'HomeRun']
     num_at_bats = len(df)
@@ -44,6 +93,17 @@ def get_slg(df):
     count_double = (df['PLAY_OUTCOME'] == 'Double').sum()
     count_triple = (df['PLAY_OUTCOME'] == 'Triple').sum()
     count_hr = (df['PLAY_OUTCOME'] == 'HomeRun').sum()
+    slg = (count_single + (2 * count_double) + (3 * count_triple) + (4 * count_hr))/num_at_bats
+    return slg
+
+def get_xslg(df):
+    hits = ['Single', 'Double', 'Triple', 'HomeRun']
+    num_at_bats = len(df)
+    df = df[df['predicted_outcomes_rf'].isin(hits)]
+    count_single = (df['predicted_outcomes_rf'] == 'Single').sum()
+    count_double = (df['predicted_outcomes_rf'] == 'Double').sum()
+    count_triple = (df['predicted_outcomes_rf'] == 'Triple').sum()
+    count_hr = (df['predicted_outcomes_rf'] == 'HomeRun').sum()
     slg = (count_single + (2 * count_double) + (3 * count_triple) + (4 * count_hr))/num_at_bats
     return slg
 
@@ -106,6 +166,8 @@ def data():
     hit_distance_data, average_hit_distance = get_bb_data(df, "HIT_DISTANCE")
     hang_time_data, average_hang_time = get_bb_data(df, "HANG_TIME")
     hit_spin_rate_data, average_hit_spin_rate = get_bb_data(df, "HIT_SPIN_RATE")
+    xba = get_xba(df)
+    xslg = get_xslg(df)
     
     if(pitcher == "All Pitchers" and batter == "All Batters"):
         exit_vlo_data = [average_exit_vlo]
@@ -128,7 +190,9 @@ def data():
         "exit_direction_data" : exit_direction_data,
         "hit_distance_data" : hit_distance_data,
         "hang_time_data" : hang_time_data,
-        "hit_spin_rate_data" : hit_spin_rate_data
+        "hit_spin_rate_data" : hit_spin_rate_data,
+        "xba" : "{:.3f}".format(xba).lstrip('0'),
+        "xslg" : "{:.3f}".format(xslg).lstrip('0'),
     } 
 
 

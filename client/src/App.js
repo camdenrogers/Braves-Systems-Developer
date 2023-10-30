@@ -85,6 +85,8 @@ function App() {
   const hit_distance_data = data.hit_distance_data
   const hang_time_data = data.hang_time_data
   const hit_spin_rate_data = data.hit_spin_rate_data
+  const xba = data.xba
+  const xslg  = data.xslg
   
   if(data.matchups_exist === "True"){
     return (
@@ -98,8 +100,8 @@ function App() {
         <div className="container">
           <div className='left-stats'>
             <StatBox battingStatName="H" expectedStatName="AB" battingStat={hits} expectedStat={at_bats} />
-            <StatBox battingStatName="AVG" expectedStatName="xBA" battingStat={battingAverageArray} expectedStat={battingAverageArray}/>
-            <StatBox battingStatName="SLG" expectedStatName="xSLG" battingStat={slg} expectedStat={slg} />
+            <StatBox battingStatName="AVG" expectedStatName="xBA" battingStat={battingAverageArray} expectedStat={xba}/>
+            <StatBox battingStatName="SLG" expectedStatName="xSLG" battingStat={slg} expectedStat={xslg} />
             <StatBox battingStatName="HR" expectedStatName="HR%" battingStat={hr} expectedStat={hr_rate} />
           </div>
           <div className='right-stats'>
