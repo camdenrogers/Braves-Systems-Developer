@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mouse Position Display</title>
+  <!-- Added the jquery library -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+	<!-- 
+		Removed '#' from the id attributes - #xPos, #yPos, #dist 
+		Changed "lower-left" to "upper-left" since the calculation is for the upper-left side of the screen
+	-->
+	<p>The mouse is located at position (<span id='xPos'></span>,<span id='yPos'></span>), and is <span id='dist'></span> pixels from the upper-left corner.</p>
+	<!-- Indented script element (personal formatting preference, not necessary)-->
+	<script>
+	$(document).mousemove(function(event){
+		//Passed the event to the updateXY function
+		updateXY(event);
+	});
+
+	//Added the event parameter
+	function updateXY(event){
+		var x = event.pageX;
+		var y = event.pageY;
+
+		$('#xPos').text(x);
+		$('#yPos').text(y);
+
+		/* Moved dist calculation into the updateXY function
+		* Corrected the distance calculation. x**2 and y**2 is not valid syntax for squaring in javascript
+		* declared dist as a var
+		*/
+		var dist = Math.sqrt(x*x + y*y);
+		$('#dist').text(dist);
+	}
+	</script>
+<!-- Moved the body and html closing tags after the script element -->
+</body>
+</html>
