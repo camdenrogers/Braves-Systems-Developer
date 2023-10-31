@@ -1,5 +1,5 @@
 # Braves-Systems-Developer
-This repository contains the frontend and backend code for a web application analyzing MLB Batted Ball data from April, 2018. 
+This repository contains the frontend and backend code for a web application analyzing MLB Batted Ball data from April, 2018. To access the application, please navigate to [this link in your browser](http://ec2-3-145-163-230.us-east-2.compute.amazonaws.com/)
 
 ## Prerequisites
 
