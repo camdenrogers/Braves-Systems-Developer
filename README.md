@@ -59,5 +59,5 @@ npm install react-scripts
 ```bash
 npm start
 ```
-11. Navigate to [localhost:3000](http://localhost:3000)http://localhost:3000
+11. Navigate to [http://localhost:3000](http://localhost:3000)
 
