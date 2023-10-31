@@ -10,6 +10,8 @@ This repository contains the frontend and backend code for a web application ana
 - venv (python3-venv)
 
 ## How to Run
+If you want to run the code in this repository on your local machine rather than accessing it via [this link in your browser](http://ec2-3-145-163-230.us-east-2.compute.amazonaws.com/), please follow the step-by-step instructions below. Please note these commands are for MacOS or Linux. However, the instructions can be followed on Windows as well with slight variations in the commands. 
+
 1. Clone this repository
 
 ```bash
