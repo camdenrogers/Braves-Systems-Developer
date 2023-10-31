@@ -1,7 +1,7 @@
 # Braves-Systems-Developer
 This repository contains the frontend and backend code for a web application analyzing MLB Batted Ball data from April, 2018. To access the application, please navigate to [this link in your browser](http://ec2-3-145-163-230.us-east-2.compute.amazonaws.com/).
 
-In addition to the web-application, this repository contains a repaired HTML file that displays the coordinates of your mouse on the webpage and calculates and displays its distance from the top-left corner of the screen.
+In addition to the web-application, this repository contains a [repaired html file](https://github.com/camdenrogers/Braves-Systems-Developer/blob/main/MousePos_fixed.html) that displays the coordinates of your mouse on the webpage and calculates and displays its distance from the top-left corner of the screen.
 
 ## Application Overview
 This application is a simple web application that calculates and displays statistics based on MLB Batted Ball Data from April, 2018. You can see the statistics for all batters vs. all pitchers, a specific pitcher vs. all batters, a specific batter vs. all pitchers, or a specific pitcher vs. a specific batter.
